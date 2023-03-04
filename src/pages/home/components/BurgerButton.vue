@@ -35,10 +35,12 @@ function toggleMenu() {
 }
 
 .burger-btn {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
   height: 30px;
   width: 30px;
   box-sizing: border-box;
-  position: relative;
   z-index: 30;
   cursor: pointer;
   @include transition(all 0.4s ease-out);
@@ -92,6 +94,13 @@ function toggleMenu() {
       width: 33px;
       left: -2px;
     }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .burger-btn {
+    top: 1rem;
+    right: 2rem;
   }
 }
 </style>

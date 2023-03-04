@@ -29,11 +29,9 @@ function refresh() {
 <template>
   <div class="container">
     <div class="menu" :class="{ opened: isMenuOpened }">
-      <div class="menu-btn">
-        <BurgerButton @on-click="toggleMenu($event)" />
-      </div>
+      <BurgerButton @on-click="toggleMenu($event)" />
       <div class="menu-settings">
-        <LanguagePicker />
+        <LanguagePicker :is-menu-opened="!!isMenuOpened" />
       </div>
     </div>
 
@@ -94,9 +92,6 @@ $transition-delay: 0.05s;
   max-width: 100%;
   background-color: var(--lp-background);
 
-  .menu-btn {
-    padding: 1rem;
-  }
   .menu-settings {
     padding: 0.5rem;
     min-width: 0;
@@ -106,11 +101,8 @@ $transition-delay: 0.05s;
 
 @media only screen and (min-width: 768px) {
   .menu {
-    .menu-btn {
-      padding: 2rem;
-    }
     .menu-settings {
-      padding: 1rem;
+      padding: 0.25rem 1rem 1rem 1rem;
     }
   }
 }
@@ -123,8 +115,6 @@ $transition-delay: 0.05s;
   /* Any element you need to change the style if menu is open goes here, using the sibling selector (~) */
 
   & ~ .content {
-    // padding-top: 30px;
-
     /* content shadow if menu opened */
     &:before {
       background-color: rgba(0, 0, 0, 0.3);

@@ -8,6 +8,10 @@ import {
   setLanguageSelection,
 } from "../data/languages";
 
+defineProps({
+  isMenuOpened: Boolean,
+});
+
 const rndLng: any = ref({});
 let selected: Ref<string[]> = ref([]);
 const languages = LANGUAGES;
@@ -32,7 +36,7 @@ function onSelectNone() {
 </script>
 <template>
   <div class="language-picker">
-    <ul class="nav">
+    <ul class="nav-idle" :class="{ 'nav-sticky': isMenuOpened }">
       <li v-on:click="onSelectAll()">
         <input type="checkbox" />
         <label class="button">Alle auswählen</label>
@@ -58,6 +62,18 @@ function onSelectNone() {
   </div>
 </template>
 <style scoped lang="scss">
+.nav-idle {
+  opacity: 0;
+  transition: 1.5s;
+}
+.nav-sticky {
+  position: sticky;
+  opacity: 1;
+  top: 0;
+  background-color: var(--moss-river);
+  padding: 0.25rem 0;
+  z-index: 10;
+}
 ul {
   padding: 0;
   margin: 0;
